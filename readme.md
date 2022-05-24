@@ -17,7 +17,6 @@ In the `repo-list.mjs` add JavaScript and Python repos.
 
   ```js
 
-  ...addJsRepos([
   	{
   		name: JS_REPO_NAMES.coord,
   		cwd: '/Users/levan/Projects/revel/oo-xt-frontend-coordinator',
@@ -26,7 +25,7 @@ In the `repo-list.mjs` add JavaScript and Python repos.
           script: {
               start: "nvm start"
           }
-  	}])
+  	}
 
   ```
 
