@@ -18,7 +18,6 @@ export const REPO_NAMES = {
 };
 
 export const ACTION_TYPES = {
-	pull: 'Pull',
 	start: 'Start',
 	kill: 'Kill',
 };

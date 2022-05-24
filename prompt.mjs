@@ -2,7 +2,8 @@
 
 import inquirer from 'inquirer';
 import _ from 'lodash';
-import { ACTION_TYPES } from './const.mjs';
+import { ACTION_TYPES, REPO_TYPES } from './const.mjs';
+import repoList from './repo-list.mjs';
 
 const getActionPromptChoices = (actionTypes) => [
 	new inquirer.Separator(''),
@@ -27,18 +28,23 @@ const showActionPrompt = (actionPromptChoices) =>
 
 const getRepoTypes = async (args) => {
 	const { action } = await args;
+	const repoTypes = {};
 
-	const repoTypes = {
-		JavaScript: [
-			'Branding',
-			'Common',
-			'Coordinator',
-			'Customers',
-			'OO-XT',
-			'SmartDining',
-		],
-		Python: ['Middleware', 'PyBe', 's3-images'],
-	};
+	if (action === ACTION_TYPES.start) {
+		repoTypes[REPO_TYPES.js] = [];
+		repoList.forEach((repo) => {
+			if (repo.type === REPO_TYPES.js) {
+				repoTypes[REPO_TYPES.js].push(repo.name);
+			}
+		});
+	} else {
+		Object.values(REPO_TYPES).forEach((type) => {
+			repoTypes[type] = [];
+		});
+		repoList.forEach((repo) => {
+			repoTypes[repo.type].push(repo.name);
+		});
+	}
 
 	return { action, repoTypes };
 };
@@ -49,7 +55,9 @@ const getRepoPromptChoices = async (args) => {
 	const repoPromptChoices = [];
 
 	Object.entries(repoTypes).map(([repoType, repos]) => {
-		repoPromptChoices.push(new inquirer.Separator(` ---- ${repoType} ---- `));
+		repoPromptChoices.push(
+			new inquirer.Separator(` ---- ${repoType} Repos ---- `)
+		);
 		repos.map((repo) => repoPromptChoices.push({ name: repo }));
 	});
 

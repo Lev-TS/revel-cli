@@ -4,20 +4,18 @@ import { exec } from 'child_process';
 import { REPO_TYPES } from './const.mjs';
 
 const _addRepos = (type, start) => (repos) =>
-	repos.map(({ name, cwd, port, scripts }) => ({
-		name,
-		cwd,
-		port,
+	repos.map(({ scripts, ...rest }) => ({
 		type,
 		scripts: {
-			kill: `lsof -t -i :${port} | xargs kill -9`,
+			kill: `lsof -t -i :${rest.port} | xargs kill -9`,
 			start,
 			...scripts,
 		},
+		...rest,
 	}));
 
 export const execShellCommand = (command, repoName) => {
-	exec(command, { shell: '/bin/zsh' }, (error, stdout, stderr) => {
+	exec(command, { shell: '/bin/zsh' }, (error, _, stderr) => {
 		if (error) {
 			console.log(error.message);
 			return;
