@@ -44,16 +44,16 @@ In the `repo-list.mjs` add JavaScript and Python repos.
 
 There are several ways to use the cli:
 
-### Select the action and repos
+### 1) Select the action and repos
 
 Run `revel` in your terminal and select the action and repos following the provided instructions.
 
-### Pass the action and select repos
+### 2) Pass the action and select repos
 
 - Run `revel --start` or `revel -s` and select repos you'd like to start
 - Run `revel --kill` or `revel -k` and select repos you'd like to kill
 
-### Pass the action and repos
+### 3) Pass the action and repos
 
 By default, you can pass any of the following `args` to the start/kill commands
 
@@ -62,7 +62,7 @@ By default, you can pass any of the following `args` to the start/kill commands
 
 Args correspond to the keys in the constants (`JS_REPO_NAMES` and `PY_REPO_NAMES`) inside the `const.mjs` file. Start command takes only keys of the `JS_REPO_NAMES` constant.
 
-### Start/Kill All
+### 4) Start/Kill All
 
 - Run `revel --start --all` or `revel -sa`
 - Run `revel --kill --all` or `revel -ka`
