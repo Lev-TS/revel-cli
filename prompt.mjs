@@ -1,17 +1,26 @@
 'use strict';
 
 import inquirer from 'inquirer';
+import yargs from 'yargs';
 import _ from 'lodash';
+
 import { ACTION_TYPES, REPO_TYPES } from './const.mjs';
 import repoList from './repo-list.mjs';
+import { getDefaultAction, getDefaultRepos } from './utils.mjs';
+
+const { argv } = yargs(process.argv);
 
 const getActionPromptChoices = (actionTypes) => [
 	new inquirer.Separator(''),
 	...actionTypes.map((action) => ({ name: action })),
 ];
 
-const showActionPrompt = (actionPromptChoices) =>
-	inquirer.prompt({
+const showActionPrompt = (defaultAction) => (actionPromptChoices) => {
+	if (defaultAction) {
+		return { action: defaultAction };
+	}
+
+	return inquirer.prompt({
 		type: 'list',
 		name: 'action',
 		message: 'What do you want to do?',
@@ -25,6 +34,7 @@ const showActionPrompt = (actionPromptChoices) =>
 			return true;
 		},
 	});
+};
 
 const getRepoTypes = async (args) => {
 	const { action } = await args;
@@ -51,7 +61,6 @@ const getRepoTypes = async (args) => {
 
 const getRepoPromptChoices = async (args) => {
 	const { action, repoTypes } = await args;
-
 	const repoPromptChoices = [];
 
 	Object.entries(repoTypes).map(([repoType, repos]) => {
@@ -86,11 +95,16 @@ const getRepoPrompt = async (args) => {
 	return { action, prompt };
 };
 
-const showRepoPrompt = async (args) => {
+const showRepoPrompt = (defaultRepos) => async (args) => {
 	const { action, prompt } = await args;
+
+	if (defaultRepos) {
+		return { repos: defaultRepos, action };
+	}
+
 	const { repos } = await prompt();
 
-	return { action, repos };
+	return { repos, action };
 };
 
 const validateAction = async (args) => {
@@ -133,10 +147,10 @@ const log = async (args) => {
 export default _.flowRight(
 	log,
 	validateAction,
-	showRepoPrompt,
+	showRepoPrompt(getDefaultRepos(argv)),
 	getRepoPrompt,
 	getRepoPromptChoices,
 	getRepoTypes,
-	showActionPrompt,
+	showActionPrompt(getDefaultAction(argv)),
 	getActionPromptChoices
 );

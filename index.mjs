@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 'use strict';
 
 import startJsRepos from './concurrent-starter.mjs';

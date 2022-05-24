@@ -5,16 +5,19 @@ export const REPO_TYPES = {
 	py: 'Python',
 };
 
-export const REPO_NAMES = {
-	branding: 'Branding',
+export const JS_REPO_NAMES = {
+	brand: 'Branding',
 	common: 'Common',
-	coordinator: 'Coordinator',
-	customers: 'Customers',
-	middleware: 'Middleware',
-	ooxt: 'OO-XT',
+	coord: 'Coordinator',
+	cs: 'Customers',
+	xt: 'OO-XT',
+	sd: 'SmartDining',
+};
+
+export const PY_REPO_NAMES = {
+	mid: 'Middleware',
 	pybe: 'PyBe',
-	s3Images: 's3-images',
-	smartDining: 'SmartDining',
+	s3: 's3-images',
 };
 
 export const ACTION_TYPES = {

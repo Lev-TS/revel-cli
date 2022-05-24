@@ -1,17 +1,21 @@
 {
-  "name": "front-starter",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "concurrently": "^7.1.0",
-    "inquirer": "^8.2.4",
-    "lodash": "^4.17.21"
-  }
+	"name": "revel-cli",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"bin": {
+		"revel": "./index.mjs"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"concurrently": "7.1.0",
+		"inquirer": "8.2.4",
+		"lodash": "4.17.21",
+		"yargs": "17.5.1"
+	}
 }
