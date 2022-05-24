@@ -22,9 +22,9 @@ In the `repo-list.mjs` add JavaScript and Python repos.
   		cwd: '/Users/levan/Projects/revel/oo-xt-frontend-coordinator',
   		port: 3000,
   		prefixColor: '#949B93',
-          script: {
-              start: "nvm start"
-          }
+        scripts: {
+            start: "nvm start"
+        }
   	}
 
   ```
