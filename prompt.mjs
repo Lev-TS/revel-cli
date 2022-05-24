@@ -29,10 +29,15 @@ const getRepoTypes = async (args) => {
 	const { action } = await args;
 
 	const repoTypes = {
-		modules: ['SmartDining', 'Branding'],
-		frontend: ['OO-XT', 'Coordinator', 'Common'],
-		backend: ['PyBe', 'Middleware', 's3-images'],
-		services: ['Customers'],
+		JavaScript: [
+			'Branding',
+			'Common',
+			'Coordinator',
+			'Customers',
+			'OO-XT',
+			'SmartDining',
+		],
+		Python: ['Middleware', 'PyBe', 's3-images'],
 	};
 
 	return { action, repoTypes };
